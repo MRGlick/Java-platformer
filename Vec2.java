@@ -28,6 +28,10 @@ public class Vec2 {
         return new Vec2(x / by, y / by);
     }
 
+    public Vec2 floor() {
+        return new Vec2(Math.floor(x), Math.floor(y));
+    }
+
     public Vec2 mul(double by){
         return new Vec2(x * by, y * by);
     }
@@ -55,6 +59,10 @@ public class Vec2 {
     
     public static Vec2 lerp(Vec2 v1, Vec2 v2, double step) {
         return new Vec2(Lerp.lerp(v1.x, v2.x, step), Lerp.lerp(v1.y, v2.y, step));
+    }
+
+    public double distanceTo(Vec2 pos) {
+        return Math.sqrt((x - pos.x) * (x - pos.x) + (y - pos.y) * (y - pos.y));
     }
 
 }

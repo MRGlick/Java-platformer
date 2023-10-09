@@ -69,6 +69,9 @@ public class Body extends GameObject{
                 
 
             if (colDataX.didCollide){
+
+                if (this instanceof Player) System.out.println("collided X");
+
                 setLocalPosition(new Vec2(localPosition.x, localPosition.y + velocity.y));
                 setVelocity(new Vec2(0, velocity.y));
                 // if (!(this instanceof Block)) System.out.println("X collided.");
@@ -79,7 +82,7 @@ public class Body extends GameObject{
                 else isOnFloor = false;
                 setLocalPosition(new Vec2(localPosition.x + velocity.x, localPosition.y));
                 setVelocity(new Vec2(velocity.x, 0));
-                
+                System.out.println(isOnFloor ? "collided down" : "collided up");
                 collided = true;
                 break;
             } else {
