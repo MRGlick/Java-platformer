@@ -61,7 +61,7 @@ public class Body extends GameObject{
         colShapeChangeY.setGlobalPosition(new Vec2(globalPosition.x, globalPosition.y + velocity.y));
         boolean collided = false;
         for (CollisionShape shape : Main.collisionShapes) {
-            if (shape.equalId(collisionShape)) continue;
+            if (shape.equalId(collisionShape) || shape.isArea) continue;
             CollisionData colDataX = colShapeChangeX.Collide(shape);
             CollisionData colDataY = colShapeChangeY.Collide(shape);
             
@@ -209,7 +209,8 @@ class Player extends Body {
     public void frameUpdate() {
         
         doFrameUpdate(); // basically super.frameUpdate()
-        // test comment
+        
+
         if (isCameraMain) {
             Vec2 pos = new Vec2(globalPosition.x - Main.resolution.x / 2 + ((RectDisplay)display).size.x / 2,
              globalPosition.y - Main.resolution.y / 2 + ((RectDisplay)display).size.y / 2);

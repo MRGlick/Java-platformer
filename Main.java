@@ -21,6 +21,7 @@ public class Main {
         frame.getContentPane().setBackground(new Color(20, 20, 20));
         frame.setLayout(null);
         frame.setTitle("My Platformer!");
+        
         Player body = new Player(new CollisionRect(new Vec2(0, 0), new Vec2(50, 50)));
         body.setVelocity(new Vec2(1, 0));
         Block block = new Block(new CollisionRect(new Vec2(0, 0), new Vec2(150, 50)));
@@ -30,7 +31,15 @@ public class Main {
         block.setGlobalPosition(new Vec2(10, 400));
         block2.setGlobalPosition(new Vec2(250, 400));
 
-        ((RectDisplay)body.display).setColor(Color.RED);
+        ((RectDisplay)body.display).setColor(new Color(40, 230, 255));
+        
+        Area area = new Area(Vec2.ZERO, new Vec2(50, 50));
+        area.setEntered((s) -> {
+            System.out.println(s + " - Entered!");
+        });
+        area.setExited((s) -> {
+            System.out.println(s + " - Exited!");
+        });
         
         
 
@@ -42,22 +51,24 @@ public class Main {
                 frame.addKeyListener(((Player)object).keyListener);
             }
         }
-
+        
         frame.setVisible(true);
+        
         updateObjects();
+       
         
     }
 
     public static void updateObjects(){
-        // Objects will update 50 times per second
+        // 50 FPS
         while (true){
-
+            
             long now = System.nanoTime();
             int waitVar = 0;
 
             while (System.nanoTime() - now < .02 * 1000000000){    
                 if (waitVar < 100) waitVar += 1;
-                if (waitVar > 100) waitVar -= 1; // bad code?
+                if (waitVar > 100) waitVar -= 1; // 
             }
             for (GameObject object : gameObjects){
                 object.frameUpdate();

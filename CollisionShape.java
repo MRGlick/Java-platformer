@@ -23,7 +23,8 @@ class CollisionData{
 public abstract class CollisionShape extends GameObject implements Cloneable{
 
     public String type = "";
-
+    
+    public boolean isArea = false;
 
     @Override
     public void addToObjects(){
